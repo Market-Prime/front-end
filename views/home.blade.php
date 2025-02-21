@@ -1,4 +1,4 @@
-@extends('layout.main', ['categories' => $pageData['categoriesData']])
+@extends('layout.main', ['categories' => $pageData['categoriesData'], 'pageTitle' => 'Market Prime'])
 @section('content')
     <main class="home flex-col items-center">
         <section class="hero-main" id="25432ggh">
@@ -92,114 +92,26 @@
             <div class="head">
                 <p class="fnt-integral">Explore Top Stores</p>
             </div>
-            <div class="main flex overflow-x-scroll gap-4 no-scrollbar" id="41XQnmpy47">{{-- csr --}}</div>
+            <div class="main flex overflow-x-scroll gap-4 no-scrollbar top-stores-cont" id="41XQnmpy47">{{-- csr --}}</div>
         </section>
         <section class="check-out-categories">
             <p class="head fnt-integral text-center font-semibold">Trending Categories</p>
             <div class="main">
-                <div class="category-browser-item">
-                    <p class="root">Clothing</p>
-                    <ul>
-                        <li>
-                            <a href="">
-                                <img src="/public/assets/images/dr92.jpg" alt="">
-                                <span href="">Men's Wear</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/public/assets/images/dr92.jpg" alt="">
-                                <span href="">Women's Wear</span></a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/public/assets/images/dr92.jpg" alt="">
-                                <span href="">T-Shirts & Polos</span>
-                            </a>
-                        </li>
-                        <li><a href="">
-                                <img src="/public/assets/images/dr92.jpg" alt="">
-                                <span href="">Dresses(Casual, Evening, Cocktail, Maxi)</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/public/assets/images/dr92.jpg" alt="">
-                                <span href="">Hoodies & Jackets</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="category-browser-item">
-                    <p class="root">Footwear</p>
-                    <ul>
-                        <li>
-                            <a href="">
-                                <img src="/public/assets/images/dr92.jpg" alt="">
-                                <span href="">Formal Shoes</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/public/assets/images/dr92.jpg" alt="">
-                                <span href="">Casual Shoes (Sneakers, Loafers)</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/public/assets/images/dr92.jpg" alt="">
-                                <span href="">Heels</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/public/assets/images/dr92.jpg" alt="">
-                                <span href="">Sandals & Slippers</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/public/assets/images/dr92.jpg" alt="">
-                                <span href="">Boots</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="category-browser-item">
-                    <p class="root">Accessories</p>
-                    <ul>
-                        <li>
-                            <a href="">
-                                <img src="/public/assets/images/dr92.jpg" alt="">
-                                <span href="">Bags</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/public/assets/images/dr92.jpg" alt="">
-                                <span href="">Luxury Watches</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/public/assets/images/dr92.jpg" alt="">
-                                <span href="">Caps</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/public/assets/images/dr92.jpg" alt="">
-                                <span href="">Eye Wear</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <img src="/public/assets/images/dr92.jpg" alt="">
-                                <span href="">Jewelry</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                @foreach ($pageData['topCategories'] as $tc)
+                    <div class="category-browser-item">
+                        <p class="root">{{ $tc['root'] }}</p>
+                        <ul>
+                            @foreach ($tc['subs'] as $sb)
+                                <li>
+                                    <a href="/s/?category={{ $sb['name'] }}">
+                                        <img src="{{ $sb['image'] }}" alt="">
+                                        <span href="">{{ $sb['name'] }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endforeach
             </div>
             <div class="end flx items-center justify-center px-2 my-4 mx-auto">
                 <a class="flex items-center gap-2 hover:underline" href="/categories"><span class="fnt-bold text-sm">Browse

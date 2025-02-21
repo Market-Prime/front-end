@@ -1,10 +1,10 @@
-@extends('layout.main', ['categories' => $pageData['categoriesData']])
+@extends('layout.main', ['categories' => $pageData['categoriesData'], 'pageTitle'=> "Categories - Market Prime"])
 
 @section('content')
     <main class="home">
         @php
-            $rootCategories = $pageData['categoriesData']['root'];
-            $subCategories = $pageData['categoriesData']['sub'];
+            $rootCategories = $pageData['categoriesData']['root'] ?? [];
+            $subCategories = $pageData['categoriesData']['sub'] ?? [];
         @endphp
         <section class="categories-core">
             <p class="head fnt-integral">Browse Categories</p>
@@ -23,7 +23,7 @@
 
                                 @foreach ($subs as $v)
                                     <li>
-                                        <a href="">
+                                        <a href="/s/?category={{$v['name']}}">
                                             <img src="{{ $v['image'] }}" alt="">
                                             <span>{{ $v['name'] }}</span>
                                         </a>

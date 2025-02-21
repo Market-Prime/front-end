@@ -49,7 +49,11 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
         $url = $_SERVER['REQUEST_URI'];
         $urlParts = parse_url($url);
-        $path = $urlParts['path'];
+        $path = rtrim($urlParts['path'], '/');
+
+        if ($path === '') {
+            $path = '/';
+        }
 
         if (isset(self::$routes[$method])) {
             foreach (self::$routes[$method] as $routeUrl => $target) {
@@ -60,6 +64,11 @@ class Router
                     call_user_func_array($target, $params);
                     return;
                 }
+            }
+            $altPath = $path . '/';
+            if (isset(self::$routes[$method][$altPath])) {
+                call_user_func(self::$routes[$method][$altPath]);
+                return;
             }
         }
 

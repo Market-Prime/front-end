@@ -2,6 +2,7 @@
 
 use Core\Classes\Router;
 use Core\Classes\Render;
+use Core\Classes\Request;
 use Core\Api\PageContentLoader;
 
 
@@ -12,22 +13,68 @@ $render = new Render(__DIR__ . "/views", __DIR__ . "/cache");
 Router::serveDir(__DIR__ . "public");
 
 Router::new("GET", "/", function () use ($render): void {
-    $topStores = [
-    ];
 
     $flashSaleData = [
     ];
 
     $categoriesData = PageContentLoader::LoadCategories();
+    $productWebSettings = PageContentLoader::GetProductWebSettings();
+    $topStores = PageContentLoader::GetTopStores();
+
+    $topCategoriesRaw = array_column(
+        array_filter($productWebSettings ?? [], fn($item) => $item['key'] === 'top_categories'),
+        'value'
+    )[0] ?? [];
+
+    $fieldsToKeep = ["image", "name"];
+
+    $topCategories = array_map(function ($rootId) use ($categoriesData, $fieldsToKeep) {
+        $filteredSubs = array_values(array_slice(
+            array_map(
+                fn($entry) => array_intersect_key($entry, array_flip($fieldsToKeep)),
+                array_filter($categoriesData["sub"] ?? [], fn($sub) => $sub["parent"] == $rootId)
+            ),
+            0,
+            5
+        ));
+
+        $parentName = array_column(
+            array_filter($categoriesData["root"] ?? [], fn($parent) => $parent["id"] == $rootId),
+            'name'
+        )[0] ?? null;
+
+        return [
+            "root" => $parentName,
+            "subs" => $filteredSubs
+        ];
+    }, $topCategoriesRaw);
+
+
     $pageData = [
         "categoriesData" => $categoriesData,
         "flashSaleData" => $flashSaleData,
         "topStoresData" => $topStores,
+        "topCategories" => $topCategories,
     ];
+
     $render->render("home", ["pageData" => $pageData]);
 });
 
-Router::new("GET","/categories", function () use ($render): void {
+Router::new("GET", "/s", function () use ($render): void {
+    $categoriesData = PageContentLoader::LoadCategories();
+    $pageData = [
+        "categoriesData" => $categoriesData,
+    ];
+    
+
+    $params = http_build_query($_GET);
+    
+
+
+    $render->render("product-listing", ["pageData" => $pageData]);
+});
+
+Router::new("GET", "/categories", function () use ($render): void {
     $categoriesData = PageContentLoader::LoadCategories();
     $pageData = [
         "categoriesData" => $categoriesData,
@@ -54,7 +101,7 @@ Router::new("GET", "/confirm-order", function () use ($render): void {
 
 Router::new("GET", "/product-detail", function () use ($render): void {
     $categoriesData = PageContentLoader::LoadCategories();
-    
+
     if (!isset($_GET['p-id']))
         return;
     $pid = $_GET['p-id'];

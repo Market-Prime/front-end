@@ -18,7 +18,7 @@
         window.__CATEGORIES_DATA__ = @json($categories);
     </script>
 
-    <title>Market Prime</title>
+    <title>{{$pageTitle??"Market Prime"}}</title>
 
 </head>
 

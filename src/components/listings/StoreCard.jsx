@@ -6,17 +6,17 @@ const StoreCard = ({ data }) => {
             <div
                 className="bg-cover w-16 bg-no-repeat bg-center aspect-square relative rounded-sm"
                 style={{
-                    backgroundImage: `url(${data?.back_image})`,
+                    backgroundImage: `url(${data?.store_splash_image})`,
                 }}
             >
                 <img
-                    src={data.image}
+                    src={data.store_logo}
                     alt=""
                     className="w-8 h-8 rounded-full absolute top-1/2 -right-2"
                 />
             </div>
             <div className="flex flex-col justify-between p-1 h-full">
-                <p className="font-semibold text-sm">{data.name}</p>
+                <p className="font-semibold text-sm">{data.business_name}</p>
                 <p className="flex gap-1">
                     {data.niches.map((niche) => (
                         <span className="rounded-lg text-xs">

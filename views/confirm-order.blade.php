@@ -1,4 +1,4 @@
-@extends('layout.main', ['categories' => $pageData['categoriesData']])
+@extends('layout.main', ['categories' => $pageData['categoriesData'], 'pageTitle'=> "Confirm Order - Market Prime"])
 @section('content')
     <section id="hme19255">
             
