@@ -1,56 +1,52 @@
 @extends('layout.main', ['categories' => $pageData['categoriesData'], 'pageTitle' => 'Market Prime'])
 @section('content')
     <main class="home flex-col items-center">
-        <section class="hero-main" id="25432ggh">
-            <div class="slider">
-                <div class="slides">
-                    <div class="slide"><img src="/public/static/images/adbanner1.png" alt="Adbanner1"></div>
-                    <div class="slide"><img src="/public/static/images/adbanner2.png" alt="Adbanner2"></div>
+        <section class="hero-section" id="25432ggh">
+            <div class="hero-main h-full">
+                <div class="head">
+                    <p class="m">Welcome to Market Prime the biggest Fashion Online mall in Africa</p>
+                    <p class="t">Shop More and Earn More Cashback on first purchase</p>
                 </div>
-                <div class="navigation">
-                    <button id="prev">&#10094;</button>
-                    <button id="next">&#10095;</button>
+                <div class="hero-cta">
+                    <a href="/s/?q=trending" class="cta">
+                        <span>Shop More</span>
+                        <svg width="55" height="54" viewBox="0 0 55 54" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0.500488" width="53.9988" height="54" rx="26.9994" fill="#002366" />
+                            <path d="M34.2078 20.2929L20.2456 34.255" stroke="#E5EEFF" stroke-width="1.85109"
+                                stroke-miterlimit="10" stroke-linecap="round" />
+                            <path
+                                d="M21.3858 19.745H32.8576C33.1071 19.7438 33.3544 19.7921 33.5851 19.8871C33.8158 19.9821 34.0254 20.1219 34.2018 20.2984C34.3782 20.4749 34.5178 20.6846 34.6127 20.9154C34.7075 21.1461 34.7557 21.3934 34.7544 21.6429V33.1148"
+                                stroke="#E5EEFF" stroke-width="1.85109" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+
+                    </a>
                 </div>
-                <div class="indicators">
-                    <span class="indicator active" data-index="0"></span>
-                    <span class="indicator" data-index="1"></span>
-                    <span class="indicator" data-index="2"></span>
+                <div class="hero-show">
+                    {{-- <svg class="h-svg" width="544" height="424" viewBox="0 0 544 424" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19.0504 33.4921L323.021 29.5464L66.3132 161.585L357.703 143.253L10.8531 272.134L427.406 243.677L24.2455 363.563L537.696 351.167L40.0269 445.298"
+                            stroke="#002366" stroke-width="57.2954" />
+                    </svg> --}}
+                    <img src="/public/static/images/hero-pg.png" alt="">
+                    <div class="hero-card hc-1">
+                        <p class="h">10k</p>
+                        <p class="t">Happy Customers</p>
+                    </div>
+                    <div class="hero-card hc-2">
+                        <p class="h">100%</p>
+                        <p class="t">Payment Secure</p>
+                    </div>
+                    <div class="hero-card hc-3">
+                        <p class="h">100K</p>
+                        <p class="t">International Brands</p>
+                    </div>
+                    <div class="hero-card hc-4">
+                        <p class="h">3k+</p>
+                        <p class="t">High Quality Products</p>
+                    </div>
                 </div>
             </div>
-
-            <script>
-                const slides = document.querySelector('.slides');
-                const slide = document.querySelectorAll('.slide');
-                const prev = document.getElementById('prev');
-                const next = document.getElementById('next');
-                const indicators = document.querySelectorAll('.indicator');
-                let currentIndex = 0;
-
-                function updateSlider() {
-                    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-                    indicators.forEach((indicator, index) => {
-                        indicator.classList.toggle('active', index === currentIndex);
-                    });
-                }
-
-                prev.addEventListener('click', () => {
-                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : slide.length - 1;
-                    updateSlider();
-                });
-
-                next.addEventListener('click', () => {
-                    currentIndex = (currentIndex < slide.length - 1) ? currentIndex + 1 : 0;
-                    updateSlider();
-                });
-
-                indicators.forEach(indicator => {
-                    indicator.addEventListener('click', () => {
-                        currentIndex = parseInt(indicator.getAttribute('data-index'));
-                        updateSlider();
-                    });
-                    // setInterval(nextSlide, 3000);
-                });
-            </script>
         </section>
         <section class="flash-sales">
             <p class="head listing-head-1 fnt-integral">Flash sales</p>
@@ -68,21 +64,21 @@
                     <div class="">
                         <a href="" class="no-decor w-full relative">
                             <p class="txt fnt-bold">Casual</p>
-                            <img src="/public/assets/images/cax10.png" alt="" class="absolute top-0 right-0 h-full">
+                            <img src="/public/assets/images/cax10.png" alt="" class="absolute h-full">
                         </a>
                         <a href="" class="no-decor w-full relative">
                             <p class="txt fnt-bold">Formal</p>
-                            <img src="/public/assets/images/cax50.png" alt="" class="absolute top-0 right-0 h-full">
+                            <img src="/public/assets/images/cax50.png" alt="" class="absolute h-full">
                         </a>
                     </div>
                     <div class="">
                         <a href="" class="no-decor w-full relative">
                             <p class="txt fnt-bold">Party</p>
-                            <img src="/public/assets/images/cax30.png" alt="" class="absolute top-0 right-0 h-full">
+                            <img src="/public/assets/images/cax30.png" alt="" class="absolute h-full">
                         </a>
                         <a href="" class="no-decor w-full relative">
                             <p class="txt fnt-bold">Gym</p>
-                            <img src="/public/assets/images/cax90.png" alt="" class="absolute top-0 right-0 h-full">
+                            <img src="/public/assets/images/cax90.png" alt="" class="absolute h-full">
                         </a>
                     </div>
                 </div>
@@ -92,7 +88,8 @@
             <div class="head">
                 <p class="fnt-integral">Explore Top Stores</p>
             </div>
-            <div class="main flex overflow-x-scroll gap-4 no-scrollbar top-stores-cont" id="41XQnmpy47">{{-- csr --}}</div>
+            <div class="main flex overflow-x-scroll gap-4 no-scrollbar top-stores-cont" id="41XQnmpy47">
+                {{-- csr --}}</div>
         </section>
         <section class="check-out-categories">
             <p class="head fnt-integral text-center font-semibold">Trending Categories</p>

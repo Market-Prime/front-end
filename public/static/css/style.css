@@ -17,7 +17,7 @@ input:hover {
     font-size: 0.6em !important;
 }
 body.main {
-    padding-top: 5rem;
+    padding-top: 4rem;
     margin: 0 auto;
 }
 body.auth {
@@ -32,7 +32,7 @@ header {
     width: 100%;
 }
 header.main {
-    padding: 1em 1.5em;
+    padding: 0.5em 1.5em;
     box-shadow: 0 2px 10px #1111112a;
 }
 header.auth {
@@ -279,7 +279,102 @@ main.home {
     max-width: 1440px;
     margin: auto;
 }
+.hero-section {
+    min-height: 80vh;
+    background-image: url("/public/static/images/hero.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+}
 .hero-main {
+    background-color: #e5eeffea;
+    padding-top: 5em;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2em;
+}
+.hero-main .head {
+    text-align: center;
+    width: clamp(250px, 90vw, 800px);
+    margin: 0 auto;
+}
+.hero-main .head .m {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 55.35px;
+    letter-spacing: 0%;
+}
+.hero-main .head .t {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0%;
+    color: #404040;
+    margin-top: 1em;
+}
+.hero-cta {
+    margin: 0 auto;
+    display: flex;
+}
+.hero-cta .cta {
+    display: flex;
+    gap: .5em;
+    align-items: center;
+}
+.hero-cta .cta span {
+    font-weight: 700;
+    line-height: 21.6px;
+    color: #002366;
+}
+.hero-cta .cta svg{
+    width: 30px;
+}
+
+.hero-show {
+    width: clamp(250px, 45vw, 800px);
+    margin: 1em auto 0 auto;
+    display: flex;
+    position: relative;
+}
+.hero-show img {
+    width: 25em;
+    margin: 0 auto;
+}
+.hero-card {
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: #fff;
+    position: absolute;
+    min-width: 10em;
+}
+.hero-card .h {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 27px;
+    color: #002366;
+}
+.hero-card .t {
+    font-size: 14px;
+    line-height: 21.6px;
+    color: #404040;
+}
+.hc-1 {
+    top: 4em;
+    left: 0;
+}
+.hc-2 {
+    top: 0;
+    right: 0;
+}
+.hc-3 {
+    bottom: 4em;
+    left: 0;
+}
+.hc-4 {
+    bottom: 5em;
+    right: 1em;
 }
 .slider {
     position: relative;
@@ -400,6 +495,10 @@ main.home {
 }
 .dress-styles .txt {
     font-size: 1.2em;
+}
+.dress-styles img {
+    top: 0;
+    right: 0;
 }
 .top-stores-cont {
     gap: 1em;
@@ -1519,13 +1618,12 @@ footer {
         opacity: 1;
         display: flex;
     }
-    #m-nav{
+    #m-nav {
         height: 100vh;
         overflow-y: scroll;
     }
     .nav-category-listing {
         width: 100% !important;
-        
     }
     .nav-category-listing .head {
         flex-direction: column !important;
@@ -1551,6 +1649,51 @@ footer {
     .user-center {
         padding: 0.5rem 0;
         gap: 0.1rem;
+    }
+
+    .hero-section {
+        background-size: auto 100%;
+    }
+    .hero-main .head .m {
+        font-size: 28px;
+        line-height: 40.35px;
+    }
+    .hero-main .head .t {
+        font-size: 16px;
+        letter-spacing: 0%;
+        margin-top: 1em;
+    }
+    .hero-show {
+        width: 100vw;
+    }
+    .hero-show img {
+        width: 100%;
+    }
+    .hero-card {
+        min-width: 6em;
+    }
+    .hero-card .h {
+        font-size: 16px;
+    }
+    .hero-card .t {
+        font-size: 12px;
+        line-height: 18.6px;
+    }
+    .hc-1 {
+        top: 4em;
+        left: 1em;
+    }
+    .hc-2 {
+        top: 0;
+        right: 1em;
+    }
+    .hc-3 {
+        bottom: 2.5em;
+        left: 1em;
+    }
+    .hc-4 {
+        bottom: 5em;
+        right: 2em;
     }
     .flash-sales {
         margin: 2rem auto;
