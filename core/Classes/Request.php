@@ -26,11 +26,39 @@ class Request
         }
     }
 
-    public static function Get(string $endPoint, array $headers = []): ?array
+    private static function normalizeCacheKey(string $url): string
     {
+        $parsed = parse_url($url);
+        $scheme = $parsed['scheme'] ?? 'http';
+        $host = $parsed['host'] ?? '';
+        $path = preg_replace('#/+#', '/', $parsed['path'] ?? '');
+        $path = rtrim($path, '/');
+
+        $queryStr = '';
+        if (isset($parsed['query'])) {
+            parse_str($parsed['query'], $queryParams);
+            ksort($queryParams);
+            $queryStr = http_build_query($queryParams);
+        }
+
+        $normalized = strtolower("{$scheme}://{$host}{$path}" . ($queryStr ? "?{$queryStr}" : ""));
+        return $normalized;
+
+    }
+
+    public static function Get(string $endPoint, array $headers = [], bool $enableCaching = false): ?array
+    {
+
         self::init();
 
-        $url = self::$baseUrl . $endPoint;
+        $url = self::$baseUrl . ltrim($endPoint, '/');
+        $cacheKey = self::normalizeCacheKey($url);
+
+        if ($enableCaching && Cache::has($cacheKey)) {
+            return Cache::get($cacheKey);
+        }
+
+
         curl_setopt(handle: self::$ch, option: CURLOPT_URL, value: $url);
 
         if (!empty($headers)) {
@@ -49,6 +77,11 @@ class Request
             error_log(message: "JSON Decode Error: " . json_last_error_msg());
             return null;
         }
+        if ($enableCaching) {
+            Cache::set($cacheKey, $data, 3600);
+        }
+
+
         return $data;
     }
 

@@ -5,9 +5,13 @@ use Core\Classes\EnvLoader;
 
 use Core\Classes\Cors;
 
+use Core\Classes\Cache;
+
 
 
 Cors::enable();
+Cache::init(null, 86400);
+
 
 
 

@@ -10,7 +10,7 @@ class PageContentLoader
     public static function LoadCategories(): array
     {
         try {
-            $response = Request::Get(endPoint: 'categories/');
+            $response = Request::Get('categories/', [], true);
             if ($response === null || $response === false) {
                 throw new Exception(message: "Invalid response from API.");
             }
@@ -27,7 +27,7 @@ class PageContentLoader
     public static function GetProductDetails($pid): array|null
     {
         try {
-            $response = Request::Get(endPoint: "products/$pid/");
+            $response = Request::Get("products/$pid/", [], true);
             if ($response === false) {
                 return null;
             }
@@ -43,7 +43,7 @@ class PageContentLoader
     public static function GetProductWebSettings(): array|null
     {
         try {
-            $response = Request::GET("product/settings/");
+            $response = Request::GET("product/settings/", [], true);
             if ($response === false) {
                 return null;
             }
@@ -59,7 +59,7 @@ class PageContentLoader
     public static function GetTopStores(): array|null
     {
         try {
-            $response = Request::GET("account/top-stores/");
+            $response = Request::GET("account/top-stores/", [], true);
             if ($response === false) {
                 return null;
             }

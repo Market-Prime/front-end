@@ -1,6 +1,0 @@
-<?php $_shouldextend[1]=1; ?>
-<?php $this->startSection('content'); ?>
- <?php echo $this->runChild('partials.signup-form'); ?>
-<?php $this->stopSection(); ?>
-
-<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.auth'); } ?>
