@@ -46,7 +46,7 @@ class Request
 
     }
 
-    public static function Get(string $endPoint, array $headers = [], bool $enableCaching = false): ?array
+    public static function Get(string $endPoint, array $headers = [], bool $enableCaching = false,int $ttl = 3600): ?array
     {
 
         self::init();
@@ -66,6 +66,7 @@ class Request
         }
 
         $response = curl_exec(handle: self::$ch);
+        error_log($endPoint);
 
         if (curl_errno(handle: self::$ch)) {
             error_log(message: "Curl error: " . curl_error(handle: self::$ch));
@@ -78,7 +79,7 @@ class Request
             return null;
         }
         if ($enableCaching) {
-            Cache::set($cacheKey, $data, 3600);
+            Cache::set($cacheKey, $data, ttl: $ttl);
         }
 
 

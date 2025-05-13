@@ -10,7 +10,7 @@ class PageContentLoader
     public static function LoadCategories(): array
     {
         try {
-            $response = Request::Get('categories/', [], true);
+            $response = Request::Get('categories/', [], true, 86400);
             if ($response === null || $response === false) {
                 throw new Exception(message: "Invalid response from API.");
             }
@@ -33,6 +33,22 @@ class PageContentLoader
             }
             $productData = $response;
             return $productData;
+        } catch (Exception $e) {
+            return null;
+        } finally {
+            Request::close();
+        }
+    }
+
+    public static function GetFlashSales(): array|null
+    {
+        try {
+            $response = Request::GET("products/flash-sale/", [], true, 86400);
+            if ($response === false) {
+                return null;
+            }
+            $flashSale = $response;
+            return $flashSale;
         } catch (Exception $e) {
             return null;
         } finally {

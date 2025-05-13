@@ -17,7 +17,7 @@ const ProductListItem1 = ({ data }) => {
                 >
                     {data.flash_deal && (
                         <div className="absolute top-1 left-1 flex-col flex items-start gap-1">
-                            {data.flash_deal.map((flash_data) => (
+                            {data.flash_deal.deal_tags.map((flash_data) => (
                                 <span
                                     className={`${
                                         flash_data.type == 0
@@ -42,7 +42,10 @@ const ProductListItem1 = ({ data }) => {
                 <div className="flex flex-col gap-1 p-1">
                     <div>
                         <p className="name text-sm fnt-bold">{data.name}</p>
-                        <p className="desc">{data.description}</p>
+                        <p className="desc text-xs">
+                            {data.description.substr(0, 45)}
+                            {data.description.length >= 45 && "..."}
+                        </p>
                     </div>
                     <div className="rating-cont">
                         {data.rating && <RenderStars rating={data.rating} />}
