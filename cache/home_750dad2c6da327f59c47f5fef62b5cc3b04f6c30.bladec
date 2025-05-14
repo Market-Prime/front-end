@@ -166,4 +166,7 @@
  </script>
 <?php $this->stopSection(); ?>
 
-<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main', ['categories' => $pageData['categoriesData'], 'pageTitle' => 'Market Prime']); } ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main', [
+ 'categories' => $pageData['categoriesData'],
+ 'pageTitle' => 'Market Prime | Buy Online'
+ ]); } ?>

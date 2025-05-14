@@ -1,4 +1,7 @@
-@extends('layout.main', ['categories' => $pageData['categoriesData'], 'pageTitle' => 'Market Prime'])
+@extends('layout.main', [
+    'categories' => $pageData['categoriesData'],
+    'pageTitle' => 'Market Prime | Buy Online'
+    ])
 @section('content')
     <main class="home flex-col items-center">
         <section class="hero-section" id="25432ggh">

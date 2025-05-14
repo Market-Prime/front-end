@@ -1,80 +1,81 @@
 <footer class="footer">
     <!-- Newsletter Section -->
-    <div class="newsletter-section">
-        <div class="newsletter-content">
-            <h2>STAY UP TO DATE ABOUT OUR LATEST OFFERS</h2>
-            <div class="newsletter-form">
-                <input type="email" placeholder="Enter your email address" class="newsletter-input" />
-                <button class="newsletter-button">Subscribe to Newsletter</button>
+    <aside class="newsletter-section">
+        <div class="newsletter-cont flx-col">
+            <div class="m">
+                <h2>Subscribe to our Newsletter</h2>
+                <p>Get to see Marketprime latest updates and price from time to time considerations, with technology
+                    playing an increasingly significant role</p>
             </div>
+            <form action="" class="f flx items-center">
+                <input type="email" placeholder="Enter your email" />
+                <input type="submit" value="Subscribe">
+            </form>
         </div>
-    </div>
-
+    </aside>
     <!-- Footer Links -->
-    <div class="footer-links">
+    <section class="footer-cont">
         <!-- About Section -->
-        <div class="footer-section">
-            <h1>MARKETPRIME</h1>
-            <p>We have clothes that suit your style and which you're proud to wear. From women to men.</p>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
+        <div class="footer-main">
+            <div class="footer-org">
+                <div class="flx org items-center">
+                    <img src="/public/static/images/logo.png" alt="logo">
+                    <h2>Marketprime</h2>
+                </div>
+                <p class="org-desc">
+                    We have clothes that suit your style and which you're proud to wear. From women to men.
+                </p>
+                <div class="footer-socials flx items-center">
+                    <a href="https://x.com/MarketPrimeAR" target="_blank"><img src="/public/static/images/s-x.png" alt="x-logo" class="fs-img"></a>
+                    <a href="https://www.facebook.com/p/Market-Prime-100093056583486" target="_blank"><img src="/public/static/images/s-fb.png" alt="fb-logo" class="fs-img"></a>
+                    <a href="https://www.instagram.com/marketprimenigeria/" target="_blank"><img src="/public/static/images/s-ins.png" alt="ins-logo" class="fs-img"></a>
+                    <a href="" target="_blank"><img src="/public/static/images/s-wa.png" alt="wa-logo" class="fs-img"></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="flx-col">
+                    <h2>Company</h2>
+                    <ul class="flx-col">
+                        <li><a href="">About</a></li>
+                        <li><a href="">Features</a></li>
+                        <li><a href="">Works</a></li>
+                        <li><a href="">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="flx-col">
+                    <h2>Help</h2>
+                    <ul class="flx-col">
+                        <li><a href="">Customer Support </a></li>
+                        <li><a href="">Delivery Details</a></li>
+                        <li><a href="">Privacy and Policy</a></li>
+                        <li><a href="">Terms and condition</a></li>
+                    </ul>
+                </div>
+                <div class="flx-col">
+                    <h2>FAQ</h2>
+                    <ul class="flx-col">
+                        <li><a href="">Account </a></li>
+                        <li><a href="">Manage Deliveries</a></li>
+                        <li><a href="">Payment</a></li>
+                        <li><a href="">Order</a></li>
+                    </ul>
+                </div>
+                <div class="flx-col">
+                    <h2>Resources</h2>
+                    <ul class="flx-col">
+                        <li><a href="">Free E- book</a></li>
+                        <li><a href="">Development Tutorial</a></li>
+                        <li><a href="">How to Blog</a></li>
+                        <li><a href="">YouTube Playlist</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-
-        <!-- Footer Column Links -->
-        <div class="footer-column">
-            <h3>COMPANY</h3>
-            <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Works</a></li>
-                <li><a href="#">Career</a></li>
-            </ul>
+        <div class="footer-end">
+            <p class="f-cp">
+                © 2020 - 2025 Marketprime.io
+            </p>
         </div>
-
-        <div class="footer-column">
-            <h3>HELP</h3>
-            <ul>
-                <li><a href="#">Customer Support</a></li>
-                <li><a href="#">Delivery Details</a></li>
-                <li><a href="#">Terms & Conditions</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-column">
-            <h3>FAQ</h3>
-            <ul>
-                <li><a href="#">Account</a></li>
-                <li><a href="#">Manage Deliveries</a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#">Payments</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-column">
-            <h3>RESOURCES</h3>
-            <ul>
-                <li><a href="#">Free eBooks</a></li>
-                <li><a href="#">Development Tutorial</a></li>
-                <li><a href="#">How to - Blog</a></li>
-                <li><a href="#">Youtube Playlist</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-        <p>MARKETPRIME &copy; 2024-2030, All Rights Reserved</p>
-        <div class="payment-icons">
-            {{-- <img src="https://via.placeholder.com/50x30?text=VISA" alt="Visa" />
-            <img src="https://via.placeholder.com/50x30?text=Mastercard" alt="Mastercard" />
-            <img src="https://via.placeholder.com/50x30?text=PayPal" alt="PayPal" />
-            <img src="https://via.placeholder.com/50x30?text=ApplePay" alt="Apple Pay" />
-            <img src="https://via.placeholder.com/50x30?text=GooglePay" alt="Google Pay" /> --}}
-        </div>
-    </div>
+        
+    </section>
 </footer>

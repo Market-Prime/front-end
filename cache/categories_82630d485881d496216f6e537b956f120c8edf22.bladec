@@ -40,4 +40,8 @@
  </main>
 <?php $this->stopSection(); ?>
 
-<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main', ['categories' => $pageData['categoriesData'], 'pageTitle'=> "Categories - Market Prime"]); } ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layout.main', [
+ 'categories' => $pageData['categoriesData'],
+ 'pageTitle'=> "Categories | Market Prime | Buy Online",
+ 'pageDescription' => "Discover the best fashion categories in Nigeria. Easily find outfits, shoes, and accessories that match your style. Start browsing on Market Prime now."
+ ]); } ?>

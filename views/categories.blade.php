@@ -1,4 +1,8 @@
-@extends('layout.main', ['categories' => $pageData['categoriesData'], 'pageTitle'=> "Categories - Market Prime"])
+@extends('layout.main', [
+        'categories' => $pageData['categoriesData'],
+        'pageTitle'=> "Categories | Market Prime | Buy Online",
+        'pageDescription' => "Discover the best fashion categories in Nigeria. Easily find outfits, shoes, and accessories that match your style. Start browsing on Market Prime now."
+    ])
 
 @section('content')
     <main class="home">
