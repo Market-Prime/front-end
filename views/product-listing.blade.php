@@ -52,14 +52,24 @@
         }
     }
 
+    $scheme = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'];
+
+    $qEncoded = urlencode($q);
+    $categoryEncoded = urlencode($category);
+
     if ($q && $category) {
         $pageHeader = 'Search results for ' . ucfirst($q) . ' in ' . ucfirst($category);
+        $canonical = "$scheme://$host/s?q=$qEncoded&category=$categoryEncoded";
     } elseif ($q) {
         $pageHeader = 'Search results for ' . ucfirst($q);
+        $canonical = "$scheme://$host/s?q=$qEncoded";
     } elseif ($category) {
         $pageHeader = 'Products in ' . ucfirst($category);
+        $canonical = "$scheme://$host/s?category=$categoryEncoded";
     } else {
         $pageHeader = 'All Products';
+        $canonical = "$scheme://$host/s";
     }
     $siteName = 'Market Prime';
     $pageTitle =
@@ -67,9 +77,6 @@
 
     $pageTitle = htmlspecialchars($pageTitle);
     $pageHeader = htmlspecialchars($pageHeader);
-
-    $scheme = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' ? 'https' : 'http';
-    $host = $_SERVER['HTTP_HOST'];
 
     $breadcrumbJson = [
         '@context' => 'https://schema.org',
@@ -86,7 +93,11 @@
     }
 @endphp
 
-@extends('layout.main', ['categories' => $pageData['categoriesData'], 'pageTitle' => $pageTitle])
+@extends('layout.main', [
+    'categories' => $pageData['categoriesData'],
+    'pageTitle' => $pageTitle,
+    'canonical' => $canonical,
+])
 @section('content')
     <main class="home pl-main">
         <div class="pl-meta">
@@ -169,7 +180,7 @@
                     </a>
 
                     <div class="pgs">
-                        <span class="counter">{{$currentPage}}</span>
+                        <span class="counter">{{ $currentPage }}</span>
                     </div>
                     <a href="{{ $nextPageHref }}" class="{{ $nextPageClass }}">
                         <span class="fnt-medium">Next</span>

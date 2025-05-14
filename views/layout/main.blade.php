@@ -19,7 +19,7 @@
     <meta name="keywords" content="{{ $pageKeywords ?? 'marketplace, buy products, clothing, fashion, deals,' }} Market Prime, fashion, ecommerce, online shopping, clothing, accessories, virtual try on, AR, augmented reality, virtual fitting room, shop online, buy clothes online, fashion tech, accurate fit, no guesswork fashion, clothing delivery, fashion delivery, online fashion store, shop fashion, style, apparel, footwear, bags, jewelry, watches, men's fashion, women's fashion, kids fashion, virtual try-on app, see it to believe it, visualize clothes, real-time fashion, tailored styles, shop from home, fashion trends, new arrivals, online boutique, fashion marketplace, Nigeria fashion, Onitsha fashion delivery">
     <meta name="author" content="Market Prime">
 
-    <link rel="canonical" href="{{ $pageUrl }}">
+    <link rel="canonical" href="<?= htmlspecialchars($canonical, ENT_QUOTES) ?>">
 
     <meta property="og:title" content="{{ $pageTitle }}">
     <meta property="og:description" content="{{ $pageDescription ?? $defaultPageDescription }}">
