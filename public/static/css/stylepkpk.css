@@ -176,7 +176,7 @@ nav {
     background-size: cover;
     aspect-ratio: 24 / 7;
     background-color: #013;
-    background-image: url("/public/static/images/sub.jpg");
+    background-image: url("/static/images/sub.jpg");
 }
 .newsletter-cont {
     width: 100%;
@@ -298,7 +298,7 @@ main.home {
 }
 .hero-section {
     min-height: 80vh;
-    background-image: url("/public/static/images/hero.png");
+    background-image: url("/static/images/hero.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto 100%;

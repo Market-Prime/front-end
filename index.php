@@ -10,7 +10,7 @@ require_once __DIR__ . "/core/bootstrap.php";
 
 $render = new Render(__DIR__ . "/views", __DIR__ . "/cache");
 
-Router::serveDir(__DIR__ . "public");
+Router::serveDir("/");
 
 Router::new("GET", "/", function () use ($render): void {
 

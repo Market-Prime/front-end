@@ -3,5 +3,5 @@
         <p class="fnt-integral">Join our marketplace and connect with customers eager to discover your products.</p>
         <a href="" class="fnt-medium hover:shadow-lg">Get started - it's free</a>
     </div>
-    <img src="/public/assets/images/ctv001.png" alt="" id="ctv1"/>
+    <img src="/assets/images/ctv001.png" alt="" id="ctv1"/>
 </section>

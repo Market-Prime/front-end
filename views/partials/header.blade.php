@@ -2,7 +2,7 @@
     <div class="flex items-center hof">
         <div class="org-id flx items-center">
             <button class="open-m-nav items-center justify-center" id="open-m-nav"><i class="fa fa-bars"></i></button>
-            <img src="/public/static/images/logo.png" alt="">
+            <img src="/static/images/logo.png" alt="">
             {{-- <p class="fnt-black">Market Prime</p> --}}
         </div>
         <nav class="items-center" id="m-nav">

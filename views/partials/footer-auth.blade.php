@@ -2,7 +2,7 @@
     <div class="top flx items-start justify-between">
         <div class="flx-col justify-center org">
             <p class="flx items-center ">
-                <img src="/public/static/images/logo.png" alt="" srcset="" class="logo"/>
+                <img src="/static/images/logo.png" alt="" srcset="" class="logo"/>
                 <span class="org-name">Market Prime</span>
             </p>
             <div class="flx items-center s-lnks">

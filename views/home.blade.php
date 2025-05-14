@@ -31,7 +31,7 @@
                             d="M19.0504 33.4921L323.021 29.5464L66.3132 161.585L357.703 143.253L10.8531 272.134L427.406 243.677L24.2455 363.563L537.696 351.167L40.0269 445.298"
                             stroke="#002366" stroke-width="57.2954" />
                     </svg> --}}
-                    <img src="/public/static/images/hero-pg.png" alt="">
+                    <img src="/static/images/hero-pg.png" alt="">
                     <div class="hero-card hc-1">
                         <p class="h">10k</p>
                         <p class="t">Happy Customers</p>
@@ -67,21 +67,21 @@
                     <div class="">
                         <a href="" class="no-decor w-full relative">
                             <p class="txt fnt-bold">Casual</p>
-                            <img src="/public/assets/images/cax10.png" alt="" class="absolute h-full">
+                            <img src="/assets/images/cax10.png" alt="" class="absolute h-full">
                         </a>
                         <a href="" class="no-decor w-full relative">
                             <p class="txt fnt-bold">Formal</p>
-                            <img src="/public/assets/images/cax50.png" alt="" class="absolute h-full">
+                            <img src="/assets/images/cax50.png" alt="" class="absolute h-full">
                         </a>
                     </div>
                     <div class="">
                         <a href="" class="no-decor w-full relative">
                             <p class="txt fnt-bold">Party</p>
-                            <img src="/public/assets/images/cax30.png" alt="" class="absolute h-full">
+                            <img src="/assets/images/cax30.png" alt="" class="absolute h-full">
                         </a>
                         <a href="" class="no-decor w-full relative">
                             <p class="txt fnt-bold">Gym</p>
-                            <img src="/public/assets/images/cax90.png" alt="" class="absolute h-full">
+                            <img src="/assets/images/cax90.png" alt="" class="absolute h-full">
                         </a>
                     </div>
                 </div>

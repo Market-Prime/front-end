@@ -65,26 +65,28 @@ class Router
                     return;
                 }
             }
-            $altPath = $path . '/';
+            $altPath = "$path/";
             if (isset(self::$routes[$method][$altPath])) {
                 call_user_func(self::$routes[$method][$altPath]);
                 return;
             }
         }
 
-        foreach (self::$publicDirs as $value) {
-            if (preg_match("/^" . preg_quote(sprintf($value), '/') . "/", $path)) {
-                $filePath = $_SERVER['DOCUMENT_ROOT'] . $path;
-                if (file_exists($filePath)) {
-                    $contentType = self::getContentType($filePath);
-                    header('Content-Type: ' . $contentType);
-                    readfile($filePath);
-                    return;
-                } else
-                    self::exit404();
+        $publicBase = realpath($_SERVER['DOCUMENT_ROOT'] . '/public');
+        $safePath = realpath($publicBase . '/' . ltrim($path, '/'));
+
+        if ($safePath && str_starts_with($safePath, $publicBase)) {
+            if (file_exists($safePath)) {
+                $contentType = self::getContentType($safePath);
+                header("Content-Type: $contentType");
+                readfile($safePath);
+                return;
+            } else {
+                self::exit404();
             }
         }
 
         self::exit404();
     }
+
 }

@@ -25,7 +25,7 @@
     <meta name="twitter:image" content="{{ $pageImage ?? $defaultSiteImage }}">
     <meta name="twitter:site" content="@MarketPrimeAR">
 
-    <link rel="icon" type="image/x-icon" href="/public/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="theme-color" content="#002366">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -34,8 +34,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="/public/static/css/all.css">
-    <link rel="stylesheet" href="/public/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/all.css">
+    <link rel="stylesheet" href="/static/css/stylepkpk.css">
 </head>
 
 <body class="auth">
@@ -46,8 +46,8 @@
         </div>
     </main>
     @include('partials.footer-auth')
-    <script src="/public/assets/app.js"></script>
-    <script src="/public/static/js/core.js"></script>
+    <script src="/assets/apppkpk.js"></script>
+    <script src="/static/js/core.js"></script>
 </body>
 
 </html>

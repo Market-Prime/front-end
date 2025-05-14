@@ -7,7 +7,7 @@
 
     $defaultPageDescription =
         'Shop affordable fashion for men, women, and kids on Market Prime. Find clothes, shoes, and accessories from top brands in Nigeria.';
-    $defaultSiteImage = '/public/static/images/site-banner.jpg';
+    $defaultSiteImage = '/static/images/site-banner.jpg';
 @endphp
 
 <head>
@@ -34,7 +34,7 @@
     <meta name="twitter:image" content="{{ $pageImage ?? $defaultSiteImage }}">
     <meta name="twitter:site" content="@MarketPrimeAR">
 
-    <link rel="icon" type="image/x-icon" href="/public/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="theme-color" content="#002366">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -43,9 +43,9 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="/public/static/css/all.css">
-    <link rel="stylesheet" href="/public/static/css/style.css">
-    <link rel="stylesheet" href="/public/assets/season.css">
+    <link rel="stylesheet" href="/static/css/all.css">
+    <link rel="stylesheet" href="/static/css/stylepkpk.css">
+    <link rel="stylesheet" href="/assets/season.css">
 
     <script>
         window.__CATEGORIES_DATA__ = @json($categories);
@@ -58,8 +58,8 @@
     @include('partials.header')
     @yield('content')
     @include('partials.footer')
-    <script src="/public/assets/app.js"></script>
-    <script src="/public/static/js/core.js"></script>
+    <script src="/assets/apppkpk.js"></script>
+    <script src="/static/js/core.js"></script>
 </body>
 
 </html>

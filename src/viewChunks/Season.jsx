@@ -7,47 +7,47 @@ const Season = () => {
         setData([
             {
                 store_name: "MarketPrime Official",
-                image: "/public/assets/images/p11.jpeg",
+                image: "/assets/images/p11.jpeg",
                 url: "#",
             },
             {
                 store_name: "MarketPrime Official",
-                image: "/public/assets/images/p12.jpeg",
+                image: "/assets/images/p12.jpeg",
                 url: "#",
             },
             {
                 store_name: "MarketPrime Official",
-                image: "/public/assets/images/p13.jpeg",
+                image: "/assets/images/p13.jpeg",
                 url: "#",
             },
             {
                 store_name: "MarketPrime Official",
-                image: "/public/assets/images/p14.jpeg",
+                image: "/assets/images/p14.jpeg",
                 url: "#",
             },
             {
                 store_name: "MarketPrime Official",
-                image: "/public/assets/images/p15.jpeg",
+                image: "/assets/images/p15.jpeg",
                 url: "#",
             },
             {
                 store_name: "MarketPrime Official",
-                image: "/public/assets/images/p16.jpeg",
+                image: "/assets/images/p16.jpeg",
                 url: "#",
             },
             {
                 store_name: "MarketPrime Official",
-                image: "/public/assets/images/p17.jpeg",
+                image: "/assets/images/p17.jpeg",
                 url: "#",
             },
             {
                 store_name: "MarketPrime Official",
-                image: "/public/assets/images/p18.jpeg",
+                image: "/assets/images/p18.jpeg",
                 url: "#",
             },
             {
                 store_name: "MarketPrime Official",
-                image: "/public/assets/images/p19.jpeg",
+                image: "/assets/images/p19.jpeg",
                 url: "#",
             },
         ]);
@@ -56,13 +56,13 @@ const Season = () => {
     return (
         <div className="for-the-season relative">
             <img
-                src="/public/assets/images/cmas1.png"
+                src="/assets/images/cmas1.png"
                 alt=""
                 className="absolute"
                 id="cmas1"
             />
             <img
-                src="/public/assets/images/cmas2.png"
+                src="/assets/images/cmas2.png"
                 alt=""
                 className="absolute"
                 id="cmas2"

@@ -82,7 +82,7 @@ const ConfirmEmail = () => {
             <ToastContainer />
             <div className="2xl:w-1/3 xl:w-1/3 lg:w-1/2 md:w-1/2 sm:w-full m-auto w-full py-10">
                 <img
-                    src="/public/static/images/logo.png"
+                    src="/static/images/logo.png"
                     alt="MarketPrime Logo"
                     className="text-center mx-auto rounded-xl w-9"
                 />

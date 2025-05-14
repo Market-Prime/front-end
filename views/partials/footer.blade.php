@@ -19,17 +19,17 @@
         <div class="footer-main">
             <div class="footer-org">
                 <div class="flx org items-center">
-                    <img src="/public/static/images/logo.png" alt="logo">
+                    <img src="/static/images/logo.png" alt="logo">
                     <h2>Marketprime</h2>
                 </div>
                 <p class="org-desc">
                     We have clothes that suit your style and which you're proud to wear. From women to men.
                 </p>
                 <div class="footer-socials flx items-center">
-                    <a href="https://x.com/MarketPrimeAR" target="_blank"><img src="/public/static/images/s-x.png" alt="x-logo" class="fs-img"></a>
-                    <a href="https://www.facebook.com/p/Market-Prime-100093056583486" target="_blank"><img src="/public/static/images/s-fb.png" alt="fb-logo" class="fs-img"></a>
-                    <a href="https://www.instagram.com/marketprimenigeria/" target="_blank"><img src="/public/static/images/s-ins.png" alt="ins-logo" class="fs-img"></a>
-                    <a href="" target="_blank"><img src="/public/static/images/s-wa.png" alt="wa-logo" class="fs-img"></a>
+                    <a href="https://x.com/MarketPrimeAR" target="_blank"><img src="/static/images/s-x.png" alt="x-logo" class="fs-img"></a>
+                    <a href="https://www.facebook.com/p/Market-Prime-100093056583486" target="_blank"><img src="/static/images/s-fb.png" alt="fb-logo" class="fs-img"></a>
+                    <a href="https://www.instagram.com/marketprimenigeria/" target="_blank"><img src="/static/images/s-ins.png" alt="ins-logo" class="fs-img"></a>
+                    <a href="" target="_blank"><img src="/static/images/s-wa.png" alt="wa-logo" class="fs-img"></a>
                 </div>
             </div>
             <div class="footer-links">

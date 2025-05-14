@@ -1,6 +1,6 @@
 <section class="virtual-tryon relative">
-    <img src="/public/assets/images/468g10.png" class="absolute" id="vtry1" />
-    <img src="/public/assets/images/ryb1.png" class="absolute" id="vtry2" />
+    <img src="/assets/images/468g10.png" class="absolute" id="vtry1" />
+    <img src="/assets/images/ryb1.png" class="absolute" id="vtry2" />
     <p class="head fnt-integral text-center font-bold">Experience the Future of Fashion with Augmented Reality
         Virtual Try On</p>
 
