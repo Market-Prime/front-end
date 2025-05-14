@@ -149,9 +149,6 @@ nav {
 .user-center button:hover {
     background-color: var(--neutral50);
 }
-
-.user-dd-context {
-}
 .user-dd-context:hover #nsri2xe,
 .user-dd-context:focus-within #nsri2xe {
     display: block;
@@ -863,8 +860,6 @@ footer {
     font-size: 0.8em;
 }
 
-.pd-main {
-}
 .pd-core {
     padding: 2em;
 }
@@ -947,8 +942,6 @@ footer {
     margin: 1.5em auto;
 }
 
-.p-items {
-}
 .p-items .head {
     color: var(--neutral600);
     font-size: 0.9em;
@@ -1227,8 +1220,7 @@ footer {
     margin: 1em auto;
     gap: 0.5em;
 }
-.c-sum-entry {
-}
+
 .c-sum-entry .k {
     font-size: 0.85em;
     font-family: "Satoshi-medium";
