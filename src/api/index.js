@@ -1,6 +1,65 @@
 import axios from "axios";
 import { serverUrl } from "./config.js";
 
+let isRefreshing = false;
+let failedQueue = [];
+
+const processQueue = (error, token = null) => {
+    failedQueue.forEach((prom) => {
+        if (error) {
+            prom.reject(error);
+        } else {
+            prom.resolve(token);
+        }
+    });
+    failedQueue = [];
+};
+
+const prepareData = (payload, formData = new FormData(), parentKey = "") => {
+    Object.keys(payload).forEach((key) => {
+        const value = payload[key];
+        const formKey = parentKey ? `${parentKey}[${key}]` : key;
+
+        if (
+            value instanceof File ||
+            (typeof File !== "undefined" && value instanceof Blob)
+        ) {
+            formData.append(formKey, value);
+        } else if (typeof value === "object" && value !== null) {
+            prepareData(value, formData, formKey);
+        } else {
+            formData.append(formKey, value);
+        }
+    });
+    return formData;
+};
+
+const extractErrorMessage = (error) => {
+    const errorData =
+        error && error.response && error.response.data
+            ? error.response.data
+            : null;
+    let errorMessage =
+        (errorData && errorData.error) ||
+        (errorData && errorData.detail) ||
+        (errorData && errorData.message) ||
+        error.message ||
+        "An unexpected error occurred.";
+    if (typeof errorMessage != String) {
+        errorMessage = JSON.stringify(errorMessage);
+    }
+    return errorMessage;
+};
+
+const handleRequest = async (request) => {
+    try {
+        const response = await request;
+        return response.data;
+    } catch (err) {
+        throw extractErrorMessage(err);
+    }
+};
+
 const ApiController = () => {
     const apiClient = axios.create({
         baseURL: serverUrl,
@@ -12,24 +71,41 @@ const ApiController = () => {
             const token = localStorage.getItem("accessToken");
             if (token) {
                 config.headers.Authorization = `Bearer ${token}`;
+                config.headers["Content-Type"] = "application/json";
             }
             return config;
         },
-        (error) => {
-            return Promise.reject(error);
-        }
+        (error) => Promise.reject(error)
     );
 
     apiClient.interceptors.response.use(
-        (response) => {
-            return response;
-        },
+        (response) => response,
+
         async (error) => {
+            const originalRequest = error.config;
             if (
+                error &&
                 error.response &&
                 error.response.status === 401 &&
-                window.__mp_user_xhrse_isTrue
+                window.__mp_user_xhrse_isTrue &&
+                originalRequest &&
+                !originalRequest._retry
             ) {
+                if (isRefreshing) {
+                    return new Promise((resolve, reject) => {
+                        failedQueue.push({ resolve, reject });
+                    })
+                        .then((token) => {
+                            if (token) {
+                                originalRequest.headers.Authorization = `Bearer ${token}`;
+                            }
+                            return apiClient(originalRequest);
+                        })
+                        .catch((err) => Promise.reject(err));
+                }
+
+                originalRequest._retry = true;
+                isRefreshing = true;
                 try {
                     const response = await axios.post(
                         `${serverUrl}/account/login/refresh/`,
@@ -39,48 +115,41 @@ const ApiController = () => {
                         },
                         {
                             headers: {
-                                "Content-Type": "multipart/form-data",
+                                "Content-Type": "application/json",
                             },
                         }
                     );
-                    response.data?.access &&
+                    if (response.data && response.data.access) {
                         localStorage.setItem(
                             "accessToken",
-                            response.data?.access
+                            response.data.access
                         );
-                } catch (error) {
-                    error?.status == 401 &&
-                        (window.location.href = `/account/login?redirect=${window.location.pathname}`);
+                    }
+                    const token = localStorage.getItem("accessToken");
+                    processQueue(null, token);
+                    isRefreshing = false;
+                    if (token) {
+                        originalRequest.headers = originalRequest.headers || {};
+                        originalRequest.headers.Authorization = `Bearer ${token}`;
+                    }
+                    return apiClient(originalRequest);
+                } catch (refreshError) {
+                    processQueue(refreshError, null);
+                    isRefreshing = false;
+                    window.location.href = `/account/login?redirect=${window.location.pathname}`;
+                    return Promise.reject(refreshError);
                 }
-
-                return;
             }
             return Promise.reject(error);
         }
     );
-
-    const _prepareData = (payload) => {
-        const formData = new FormData();
-        for (const key in payload) {
-            formData.append(key, payload[key]);
-        }
-        return formData;
-    };
-    const extractErrorMessage = (error) => {
-        return (
-            error?.response?.data?.error ||
-            error?.response?.data?.detail ||
-            error?.response?.data?.message ||
-            "Unknown Error please try again"
-        );
-    };
 
     return {
         login: async (payload) => {
             try {
                 const response = await axios.post(
                     `${serverUrl}/account/login`,
-                    _prepareData(payload),
+                    prepareData(payload),
                     {
                         headers: {
                             "Content-Type": "multipart/form-data",
@@ -96,7 +165,7 @@ const ApiController = () => {
             try {
                 const response = await axios.post(
                     `${serverUrl}/account/register/`,
-                    _prepareData(payload),
+                    prepareData(payload),
                     {
                         headers: {
                             "Content-Type": "multipart/form-data",
@@ -112,7 +181,7 @@ const ApiController = () => {
             try {
                 const response = await axios.post(
                     `${serverUrl}/account/confirm/`,
-                    _prepareData(payload),
+                    prepareData(payload),
                     {
                         headers: {
                             "Content-Type": "multipart/form-data",
@@ -125,62 +194,17 @@ const ApiController = () => {
                 throw extractErrorMessage(error);
             }
         },
-        addItemsToCart: async (payload) => {
-            try {
-                const response = await apiClient.post(
-                    "/account/carts/",
-                    payload,
-                    {
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                    }
-                );
-                return response.data;
-            } catch (error) {
-                console.log(error);
-                throw extractErrorMessage(error);
-            }
-        },
-        getCartItems: async () => {
-            try {
-                const response = await apiClient.get("/account/carts/", {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                });
-                return response.data;
-            } catch (error) {
-                throw extractErrorMessage(error);
-            }
-        },
-        deleteCartItem: async (pid) => {
-            try {
-                const response = await apiClient.delete(
-                    `/account/carts/?pid=${pid}`,
-                    {
-                        headers: {
-                            "Content-Type": "multipart/form-data",
-                        },
-                    }
-                );
-                return response.data;
-            } catch (error) {
-                throw extractErrorMessage(error);
-            }
-        },
-        getProductItem: async (id) => {
-            try {
-                const response = await apiClient.get(`/product-item/${id}/`, {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                });
-                return response.data;
-            } catch (error) {
-                throw extractErrorMessage(error);
-            }
-        },
+        addItemsToCart: (payload) =>
+            handleRequest(
+                apiClient.post("/account/carts/", prepareData(payload))
+            ),
+        getCartItems: () => handleRequest(apiClient.get("/account/carts/")),
+        deleteCartItem: (pid) =>
+            handleRequest(apiClient.delete(`/account/carts/?pid=${pid}`)),
+        getProductDetails: (pid) =>
+            handleRequest(apiClient.get(`/products/${pid}/`)),
+        getProductItem: (id) =>
+            handleRequest(apiClient.get(`/product-item/${id}/`)),
     };
 };
 

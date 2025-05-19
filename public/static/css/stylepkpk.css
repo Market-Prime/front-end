@@ -672,7 +672,15 @@ footer {
     font-family: "Satoshi-Regular" !important;
 }
 
-.auth-modal-cont {
+.notification-context{
+    position: fixed;
+    top: 1em;
+    right: 1em;
+    z-index: 10000;
+    /* display: none; */
+}
+
+.auth-modal-cont, .add-to-cart-modal-cont {
     width: 100%;
     min-height: 100vh;
     position: fixed;
@@ -684,7 +692,9 @@ footer {
     padding: 1em;
     display: none;
 }
-.auth-modal {
+
+
+.auth-modal, .add-to-cart-modal {
     width: 100%;
     max-width: 600px;
     padding: 2em 1em;
@@ -694,7 +704,12 @@ footer {
     gap: 1em;
     position: relative;
 }
-#close-auth-modal-btn {
+.add-to-cart-modal{
+    background-color: #E5EEFF;
+    max-height: 90dvh;
+}
+
+#close-auth-modal-btn, #close-add-to-cart-modal-btn {
     position: absolute;
     top: 1.5em;
     right: 1.5em;
@@ -702,10 +717,10 @@ footer {
     aspect-ratio: 1 / 1;
     border-radius: 50%;
 }
-#close-auth-modal-btn:hover {
+#close-auth-modal-btn:hover, #close-add-to-cart-modal-btn:hover {
     background-color: var(--neutral200);
 }
-#close-auth-modal-btn * {
+#close-auth-modal-btn *, #close-add-to-cart-modal-btn * {
     color: var(--brand600);
 }
 .auth-modal > img,
@@ -859,6 +874,10 @@ footer {
     font-weight: 600;
     font-size: 0.8em;
 }
+
+
+
+
 
 .pd-core {
     padding: 2em;
@@ -2104,4 +2123,19 @@ footer {
     to {
         top: -100vh;
     }
+}
+
+@keyframes slide-in-2 {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-2 {
+  animation: slide-in-2 0.3s ease-out;
 }

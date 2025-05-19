@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { getCartCount } from "../db";
 
+
+
+
 const CartCounter = () => {
     const [cartNumber, setCartNumber] = useState(0);
 
     useEffect(() => {
-        const handleUpdate = async () => {
-            setCartNumber(await getCartCount());
+        const handleUpdate = () => {
+            getCartCount().then(setCartNumber);
         };
 
-        document.addEventListener("cart_updated", handleUpdate);
+        handleUpdate(); //running this here to ensure cart update onmount of count counter
 
+        window.addEventListener("cart_updated", handleUpdate);
         return () => {
-            document.removeEventListener("cart_updated", handleUpdate);
+            window.removeEventListener("cart_updated", handleUpdate);
         };
     }, []);
 

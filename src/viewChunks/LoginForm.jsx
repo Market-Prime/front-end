@@ -1,20 +1,40 @@
 import React, { useState } from "react";
 import ApiClient from "../api";
+import publishNotification from "../utils/publishNotification";
+import ReactLoading from "react-loading";
 
 const LoginForm = () => {
     const [formData, setFormData] = useState({});
-    const [message, setMessage] = useState([true, ""]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const login = async () => {
+        setIsLoading(true);
         await ApiClient.login(formData)
             .then((data) => {
                 if (!(data.access && data.refresh)) {
-                    setMessage([false, "Unknown Error. Please try again"]);
+                    publishNotification({
+                        notificationType: "alert",
+                        messageTitle: "Unknown Error. Please try again",
+                        autoClose: true,
+                        timeToAutoClose: 10000,
+                    });
                     return;
                 }
                 localStorage.setItem("accessToken", data.access);
                 localStorage.setItem("refreshToken", data.refresh);
-                setMessage([true, "Login Sucessful. Please wait"]);
+                if (data.user_class == 0) {
+                    window.location.href = "https://admin.marketprime.io";
+                    return;
+                } else if (data.user_class == 2) {
+                    window.location.href = "https://vendors.marketprime.io";
+                    return;
+                }
+                publishNotification({
+                    notificationType: "success",
+                    messageTitle: "Login Sucessful. Please wait",
+                    autoClose: true,
+                    timeToAutoClose: 5000,
+                });
 
                 const currentPath = window.location.pathname;
                 if (
@@ -35,7 +55,15 @@ const LoginForm = () => {
             })
             .catch((err) => {
                 console.log(err);
-                setMessage([false, err]);
+                publishNotification({
+                    notificationType: "alert",
+                    messageTitle: err,
+                    autoClose: true,
+                    timeToAutoClose: 10000,
+                });
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     };
 
@@ -46,7 +74,7 @@ const LoginForm = () => {
                 <p className="pre">Input your details to login</p>
             </div>
             <div className="input-cont flx-col">
-                <label for="email">Email</label>
+                <label htmlFor="email">Email</label>
                 <div className="input-context flx items-center">
                     <input
                         type="email"
@@ -63,7 +91,7 @@ const LoginForm = () => {
                 </div>
             </div>
             <div className="input-cont flx-col">
-                <label for="">Password</label>
+                <label htmlFor="">Password</label>
                 <div className="input-context flx items-center">
                     <input
                         type="password"
@@ -91,21 +119,34 @@ const LoginForm = () => {
                 </p>
             </div>
             <div className="input-cont">
-                <input type="checkbox" name="remme" id="remme" />
-                <label for="remme">Remember me</label>
+                <input
+                    type="checkbox"
+                    name="remme"
+                    id="remme"
+                    className="mr-2"
+                />
+                <label htmlFor="remme">Remember me</label>
             </div>
-            <p className={`mess ${message[0] ? "success" : "error"}`}>
-                {message[1]}
-            </p>
             <div className="input-cont">
                 <button
                     type="submit"
+                    disabled={isLoading}
+                    className="disabled:opacity-70 disabled:cursor-not-allowed"
                     onClick={(e) => {
                         e.preventDefault();
                         login();
                     }}
                 >
-                    Continue
+                    {isLoading ? (
+                        <ReactLoading
+                            type="spin"
+                            height={20}
+                            width={20}
+                            className="mx-auto"
+                        />
+                    ) : (
+                        <>Continue</>
+                    )}
                 </button>
             </div>
         </>

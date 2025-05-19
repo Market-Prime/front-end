@@ -1,25 +1,47 @@
 import React, { useState } from "react";
 import ApiClient from "../api";
+import publishNotification from "../utils/publishNotification";
+import ReactLoading from "react-loading";
 
 const SignupForm = () => {
     const [formData, setFormData] = useState({});
-    const [message, setMessage] = useState([true, ""]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const signup = async () => {
+        setIsLoading(true);
         await ApiClient.signup(formData)
             .then((data) => {
-                setMessage([true, "Success. Please wait"]);
-
-                let redirectTo = "/";
+                publishNotification({
+                    notificationType: "success",
+                    messageTitle: "Registration successful",
+                    autoClose: true,
+                    timeToAutoClose: 1000,
+                });
+                publishNotification({
+                    notificationType: "caution",
+                    messageTitle:
+                        "We've sent a verification email. Kindly check your inbox to continue.",
+                    autoClose: true,
+                    timeToAutoClose: 10000,
+                });
+                let redirectTo = "/s?q=trending";
                 const params = new URLSearchParams(window.location.search);
                 if (params.has("redirect")) redirectTo = params.get("redirect");
                 setTimeout(() => {
                     window.location.href = redirectTo;
-                }, 300);
+                }, 500);
             })
             .catch((err) => {
                 console.log(err);
-                setMessage([false, err]);
+                publishNotification({
+                    notificationType: "alert",
+                    messageTitle: err,
+                    autoClose: true,
+                    timeToAutoClose: 10000,
+                });
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     };
 
@@ -143,18 +165,26 @@ const SignupForm = () => {
                     <a href="">Terms and Conditions</a>
                 </p>
             </div>
-            <p className={`mess ${message[0] ? "success" : "error"}`}>
-                {message[1]}
-            </p>
             <div className="input-cont">
                 <button
+                    disabled={isLoading}
+                    className="disabled:opacity-70 disabled:cursor-not-allowed"
                     type="submit"
                     onClick={(e) => {
                         e.preventDefault();
                         signup();
                     }}
                 >
-                    Continue
+                    {isLoading ? (
+                        <ReactLoading
+                            type="spin"
+                            height={20}
+                            width={20}
+                            className="mx-auto"
+                        />
+                    ) : (
+                        <>Continue</>
+                    )}
                 </button>
             </div>
         </>

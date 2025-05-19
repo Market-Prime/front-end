@@ -1,13 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import "./styles/index.css";
+import axios from "axios";
+import { serverUrl } from "./api/config";
+
 import NavCategoryFlow from "./viewChunks/NavCategoryFlow";
 import FlashSaleListing from "./viewChunks/FlashSale";
 import TopStores from "./viewChunks/TopStores";
 import Season from "./viewChunks/Season";
 import NewArrivals from "./viewChunks/NewArrivals";
-import axios from "axios";
-import { serverUrl } from "./api/config";
 import HeaderUserIconDropDown from "./viewChunks/HeaderUserDropDown";
 import ConfirmEmail from "./pages/confirmEmail";
 import ProductDetail from "./viewChunks/ProductDetails";
@@ -17,65 +18,35 @@ import CartCounter from "./viewChunks/cartCounter";
 import refreshCart from "./utils/refreshCart";
 import UserCart from "./viewChunks/UserCart";
 import SetDelivery from "./viewChunks/SetDelivery";
+import ProductDetailModal from "./viewChunks/productDetailModal";
+import ToastNotification from "./components/ToastNotification";
 
 const renderChunks = () => {
-    const NavCategoryFlowContianer = document.getElementById("cat199an6rr2e");
-    const FlashSalesContainer = document.getElementById("19233hAzQw4x");
-    const TopStoresConTainer = document.getElementById("41XQnmpy47");
-    const SeasonContainer = document.getElementById("emttrye14559");
-    const NewArrivalsContainer = document.getElementById("46889dretr");
-    const UserHeaderDropDownContainer = document.getElementById("nsri2xe");
+    const containers = [
+        { id: "cat199an6rr2e", component: <NavCategoryFlow /> },
+        { id: "nsri2xe", component: <HeaderUserIconDropDown /> },
+        { id: "19233hAzQw4x", component: <FlashSaleListing /> },
+        { id: "41XQnmpy47", component: <TopStores /> },
+        { id: "emttrye14559", component: <Season /> },
+        { id: "46889dretr", component: <NewArrivals /> },
+        { id: "294uuei", component: <ConfirmEmail /> },
+        { id: "f1sub03", component: <ProductDetail /> },
+        { id: "modal-login", component: <LoginForm /> },
+        { id: "modal-register", component: <SignupForm /> },
+        { id: "cart-counter", component: <CartCounter /> },
+        { id: "hres214", component: <UserCart /> },
+        { id: "hme19255", component: <SetDelivery /> },
+        { id: "pqm21nzett6", component: <ProductDetailModal /> },
+        { id: "jjwoopn8900nmp", component: <ToastNotification /> },
+    ];
 
-    const ConfirmEmailContainer = document.getElementById("294uuei");
-    const ProductDetailCont = document.getElementById("f1sub03");
-    const LoginFormContainer = document.getElementById("modal-login");
-    const RegisterFormContainer = document.getElementById("modal-register");
-    const HeaderCartCounter = document.getElementById("cart-counter");
-    const CartContainer = document.getElementById("hres214");
-    const SetDeliveryContainer = document.getElementById("hme19255");
-
-    if (UserHeaderDropDownContainer) {
-        ReactDOM.render(
-            <HeaderUserIconDropDown />,
-            UserHeaderDropDownContainer
-        );
-    }
-    if (NavCategoryFlowContianer) {
-        ReactDOM.render(<NavCategoryFlow />, NavCategoryFlowContianer);
-    }
-    if (FlashSalesContainer) {
-        ReactDOM.render(<FlashSaleListing />, FlashSalesContainer);
-    }
-    if (TopStoresConTainer) {
-        ReactDOM.render(<TopStores />, TopStoresConTainer);
-    }
-    if (SeasonContainer) {
-        ReactDOM.render(<Season />, SeasonContainer);
-    }
-    if (NewArrivalsContainer) {
-        ReactDOM.render(<NewArrivals />, NewArrivalsContainer);
-    }
-    if (ConfirmEmailContainer) {
-        ReactDOM.render(<ConfirmEmail />, ConfirmEmailContainer);
-    }
-    if (ProductDetailCont) {
-        ReactDOM.render(<ProductDetail />, ProductDetailCont);
-    }
-    if (LoginFormContainer) {
-        ReactDOM.render(<LoginForm />, LoginFormContainer);
-    }
-    if (RegisterFormContainer) {
-        ReactDOM.render(<SignupForm />, RegisterFormContainer);
-    }
-    if (HeaderCartCounter) {
-        ReactDOM.render(<CartCounter />, HeaderCartCounter);
-    }
-    if (CartContainer) {
-        ReactDOM.render(<UserCart />, CartContainer);
-    }
-    if (SetDeliveryContainer) {
-        ReactDOM.render(<SetDelivery />, SetDeliveryContainer);
-    }
+    containers.forEach(({ id, component }) => {
+        const container = document.getElementById(id);
+        if (container) {
+            const root = createRoot(container);
+            root.render(component);
+        }
+    });
 };
 
 const getAuthState = async () => {

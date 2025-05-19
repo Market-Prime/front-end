@@ -53,3 +53,87 @@ export const CartAdd = ({ size = "24px" }) => {
         </svg>
     );
 };
+
+export const Cart = ({ size = 25 }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={size}
+            height={(24 * size) / 25}
+            fill="none"
+        >
+            <path
+                stroke="#E5EEFF"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M8.5 16 19 14.5 20.5 6"
+            />
+            <path
+                stroke="#E5EEFF"
+                strokeWidth={1.5}
+                d="M6.5 6h16M6.5 22a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM17.5 22a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM8.5 20h7"
+            />
+            <path
+                stroke="#E5EEFF"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M2.5 2h3l3 14-1.368 2"
+            />
+        </svg>
+    );
+};
+
+export const NotificationAlert = () => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={20}
+            height={20}
+            fill="none"
+        >
+            <path
+                fill="#FF507A"
+                fillRule="evenodd"
+                d="M20 10c0 5.523-4.477 10-10 10H.994C.11 20-.332 18.923.292 18.293L2.25 16.32A9.959 9.959 0 0 1 0 10C0 4.477 4.477 0 10 0s10 4.477 10 10Zm-6.793-3.207a1 1 0 0 1 0 1.414L11.414 10l1.793 1.793a1 1 0 0 1-1.414 1.414L10 11.414l-1.793 1.793a1 1 0 0 1-1.414-1.414L8.586 10 6.793 8.207a1 1 0 0 1 1.414-1.414L10 8.586l1.793-1.793a1 1 0 0 1 1.414 0Z"
+                clipRule="evenodd"
+            />
+        </svg>
+    );
+};
+
+export const NotificationCaution = () => {
+    return (
+        <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M20 10C20 15.5228 15.5228 20 10 20H0.993697C0.110179 20 -0.332289 18.9229 0.292453 18.2929L2.2495 16.3195C0.843343 14.597 1.21409e-08 12.397 1.21409e-08 10C1.21409e-08 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10ZM10.99 6C10.99 5.44772 10.5446 5 9.99502 5C9.44549 5 9 5.44772 9 6V10C9 10.5523 9.44549 11 9.99502 11C10.5446 11 10.99 10.5523 10.99 10V6ZM9.99502 13C9.44549 13 9 13.4477 9 14C9 14.5523 9.44549 15 9.99502 15H10.005C10.5545 15 11 14.5523 11 14C11 13.4477 10.5545 13 10.005 13H9.99502Z"
+                fill="#FFC400"
+            />
+        </svg>
+    );
+};
+
+export const NotificationSuccess = () => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width={20}
+            height={20}
+            fill="none"
+        >
+            <path
+                fill="#31C440"
+                fillRule="evenodd"
+                d="M20 10c0 5.523-4.477 10-10 10H.994C.11 20-.332 18.923.292 18.293L2.25 16.32A9.959 9.959 0 0 1 0 10C0 4.477 4.477 0 10 0s10 4.477 10 10Zm-6.293-1.293a1 1 0 0 0-1.414-1.414L9 10.586 7.707 9.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4Z"
+                clipRule="evenodd"
+            />
+        </svg>
+    );
+};

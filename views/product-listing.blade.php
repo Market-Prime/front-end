@@ -1,8 +1,8 @@
 @php
-    $results = $pageData['searchResult']['results'];
-    $currentPage = $pageData['searchResult']['current_page'];
-    $count = $pageData['searchResult']['count'];
-    $totalPages = $pageData['searchResult']['total_pages'];
+    $results = $pageData['searchResult']['results'] ?? [];
+    $currentPage = $pageData['searchResult']['current_page'] ?? 1;
+    $count = $pageData['searchResult']['count'] ?? 0;
+    $totalPages = $pageData['searchResult']['total_pages'] ?? 0;
     $params = $pageData['params'];
 
     parse_str($params, result: $query);
@@ -150,7 +150,7 @@
                                     <p class="price fnt-bold">&#8358; {{ number_format($product['price'], 2) }}</p>
                                     <div class="star-rating">
                                         @php
-                                            $rating = $product['rating'] ?? 4;
+                                            $rating = $product['rating'] ?? 0;
                                         @endphp
                                         @for ($i = 1; $i <= 5; $i++)
                                             @if ($i <= $rating)
@@ -162,7 +162,7 @@
                                     </div>
                                 </div>
                                 <div class="pl-cta">
-                                    <button class="atc fnt-bold">Add to cart</button>
+                                    <button class="atc atc-trigger fnt-bold" data-product-id="{{ $product['id'] }}">Add to cart</button>
                                 </div>
                             </div>
                         </a>
