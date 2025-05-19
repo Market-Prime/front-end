@@ -707,6 +707,7 @@ footer {
 .add-to-cart-modal{
     background-color: #E5EEFF;
     max-height: 90dvh;
+    overflow-y: auto;
 }
 
 #close-auth-modal-btn, #close-add-to-cart-modal-btn {

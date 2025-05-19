@@ -122,7 +122,6 @@ const ProductDetailModal = () => {
         setIsProductLoading(true);
         ApiClient.getProductDetails(productId)
             .then((data) => {
-                console.log(data);
                 setProductDetails(data);
                 setImages([data?.product.base_image, ...data?.images]);
                 setProductItems(data.items);
