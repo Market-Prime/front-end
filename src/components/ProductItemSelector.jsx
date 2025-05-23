@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useMemo, useEffect } from "react";
 
 const ProductItemSelector = ({
@@ -69,7 +70,7 @@ const ProductItemSelector = ({
 
     useEffect(() => {
         setFilteredItems(filteredItems);
-    }, [filteredItems]);
+    }, [filteredItems, setFilteredItems]);
 
     useEffect(() => {
         const allOptionsSelected =
@@ -82,19 +83,20 @@ const ProductItemSelector = ({
         } else {
             onFinalSelection(false);
         }
-    }, [availableOptions, selectedOptions, filteredItems]);
+    }, [availableOptions, selectedOptions, filteredItems, onFinalSelection]);
 
     return (
         <div className="border border-blue-900 rounded-md p-2 overflow-y-auto max-h-[50vh] md:max-h-[35vh]">
-            <p className="text-xs p-1">Available Variations</p>
+            <p className="text-xs p-1 font-semibold">Select options</p>
             <div className="space-y-1">
                 {availableOptions.map(({ variation_name, options }) => (
                     <div
                         key={variation_name}
                         className="bg-gray-100 rounded-md p-1"
                     >
-                        <h3 className="text-xs text-blue-900">
-                            {variation_name}
+                        <h3 className="text-xs text-blue-900 font-semibold">
+                            {variation_name.charAt(0).toUpperCase()}
+                            {variation_name.slice(1).toLowerCase()}
                         </h3>
                         <div className="p-1 flex flex-wrap gap-2">
                             {options.map((option) => (
@@ -103,14 +105,15 @@ const ProductItemSelector = ({
                                     onClick={() =>
                                         toggleOption(variation_name, option)
                                     }
-                                    className={`p-1 rounded-md text-[8px] border ${
+                                    className={`p-1 rounded-md text-xs border font-semibold ${
                                         selectedOptions[variation_name] ===
                                         option
                                             ? "bg-[#002366] text-white border-[#002366]"
                                             : "bg-transparent text-gray-950 border-gray-700"
                                     }`}
                                 >
-                                    {option}
+                                    {option.charAt(0).toUpperCase()}
+                                    {option.slice(1).toLowerCase()}
                                 </button>
                             ))}
                         </div>
